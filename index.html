@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponpes Raudhatul Ulum - Sistem Informasi</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <div>
+                <i class="fas fa-phone"></i> (0265) 123-4567
+                <i class="fas fa-envelope" style="margin-left: 20px;"></i> info@raudhatululum.sch.id
+            </div>
+            <div>
+                <a href="masuk.html" style="margin-left: 20px;"><i class="fas fa-cog"></i> Portal Admin</a>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <div class="logo-icon-image">
+                    <img src="img/logo-hero.png" alt="Logo Ponpes Raudhatul Ulum">
+                </div>
+                <div class="logo-text">
+                    <h1>Ponpes Raudhatul Ulum</h1>
+                    <p>Sistem Informasi Ponpes</p>
+                </div>
+            </div>
+    
+            <!-- HAMBURGER MENU BUTTON - TAMBAHKAN INI -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+    
+            <!-- Nav Links dengan ID untuk JavaScript -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#beranda">Beranda</a></li>
+                <li><a href="index.html#profil">Profil</a></li>
+                <li><a href="masuk.html">Masuk</a></li>
+                <li><a href="index.html#berita">Berita</a></li>
+                <li><a href="index.html#kontak">Kontak</a></li>
+                <li><a href="register.html">Pendaftaran</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- MENU OVERLAY - TAMBAHKAN SETELAH HEADER -->
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <section class="hero" id="beranda" style="background-image: url(img/hero-img.jpeg);">
+        <h2>Selamat Datang di Madrasah Raudhatul Ulum</h2>
+        <p>Membentuk Generasi Islami yang Berakhlak Mulia dan Berprestasi</p>
+        <a href="#layanan" class="btn-primary">Jelajahi Layanan</a>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Siswa Aktif</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">9</div>
+                <div class="stat-label">Tenaga Pendidik</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">30+</div>
+                <div class="stat-label">Ruang Kelas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">A</div>
+                <div class="stat-label">Akreditasi</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="profile" id="profil">
+        <div class="profile-container">
+            <h2 class="section-title">Profil Madrasah</h2>
+            
+            <div class="profile-content">
+                <div class="profile-tabs">
+                    <button class="tab-btn active" data-tab="visi-misi">Visi & Misi</button>
+                    <button class="tab-btn" data-tab="sejarah">Sejarah</button>
+                    <button class="tab-btn" data-tab="struktur">Struktur Organisasi</button>
+                    <button class="tab-btn" data-tab="fasilitas">Fasilitas</button>
+                </div>
+
+                <div class="profile-tab-content">
+                    <div class="tab-panel active" id="visi-misi">
+                        <div class="visi-misi-grid">
+                            <div class="visi-box">
+                                <div class="icon-header">
+                                    <i class="fas fa-eye"></i>
+                                    <h3>Visi</h3>
+                                </div>
+                                <p>"Berlandaskan iman, takwa, akhlak mulia, dan wawasan keislaman dalam bingkai Ahlussunnah wal Jama'ah"</p>
+                            </div>
+                            <div class="misi-box">
+                                <div class="icon-header">
+                                    <i class="fas fa-bullseye"></i>
+                                    <h3>Misi</h3>
+                                </div>
+                                <ul>
+                                    <li><i class="fas fa-check-circle"></i> Menumbuhkan dan mengembangkan penghayatan terhadap ajaran agama dengan menanamkan kecintaan terhadap Al Quran, pembiasaan beribadah dan pembiasaan berprilaku islami</li>
+                                    <li><i class="fas fa-check-circle"></i> Membentuk siswa yang berakhlaq mulia dan religius</li>
+                                    <li><i class="fas fa-check-circle"></i> Mengembangkan lingkungan pendidikan yang sakinah sehingga mendorong suasana akademis yang kondusif</li>
+                                    <li><i class="fas fa-check-circle"></i> Menumbuhkan himmah 'aliyyah / cita-cita yang luhur dan penuh rasa optimisme</li>
+                                    <li><i class="fas fa-check-circle"></i> Mencetak generasi yang mampu bertindak benar, berlaku jujum bersikap sabar, kreatif dan inovatif</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="sejarah">
+                        <div class="sejarah-content">
+                            <div class="sejarah-text">
+                                <h3>Sejarah Singkat</h3>
+                                <p>Madrasah Raudhatul Ulum didirikan pada tahun 1985 oleh para tokoh masyarakat dan ulama setempat dengan tujuan memberikan pendidikan Islam yang berkualitas kepada generasi muda. Berawal dari sebuah musholla kecil dengan 25 siswa, kini berkembang menjadi lembaga pendidikan yang memiliki lebih dari 850 siswa.</p>
+                                <p>Sepanjang perjalanannya, madrasah ini telah menghasilkan ribuan alumni yang tersebar di berbagai profesi dan berkontribusi positif bagi masyarakat. Dengan akreditasi A dan fasilitas yang terus berkembang, Madrasah Raudhatul Ulum berkomitmen untuk terus meningkatkan kualitas pendidikan.</p>
+                            </div>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-year">1985</div>
+                                    <div class="timeline-desc">Pendirian madrasah dengan 25 siswa</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-year">1995</div>
+                                    <div class="timeline-desc">Memperoleh akreditasi B</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-year">2005</div>
+                                    <div class="timeline-desc">Pembangunan gedung baru 3 lantai</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-year">2015</div>
+                                    <div class="timeline-desc">Meraih akreditasi A</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-year">2020</div>
+                                    <div class="timeline-desc">Implementasi sistem informasi digital</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="struktur">
+                        <div class="struktur-grid">
+                            <div class="struktur-card kepala">
+                                <div class="struktur-photo">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <h4>Kepala Madrasah</h4>
+                                <p>KH. Ade Turmudi</p>
+                            </div>
+                            <div class="struktur-card">
+                                <div class="struktur-photo">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <h4>Sekretaris</h4>
+                                <p>Asep Didin Dimyati</p>
+                            </div>
+                            <div class="struktur-card">
+                                <div class="struktur-photo">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <h4>Bendahara</h4>
+                                <p>Nelis Siti Ummu Salamah</p>
+                            </div>
+                            <div class="struktur-card">
+                                <div class="struktur-photo">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <h4>Dewan Guru</h4>
+                                <p>Ma'ruf Almaarip Turmudi</p>
+                            </div>
+                            <div class="struktur-card">
+                                <div class="struktur-photo">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <h4>Dewan Guru</h4>
+                                <p>Ema Rahmawati</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="fasilitas">
+                        <div class="fasilitas-grid">
+                            <div class="fasilitas-item">
+                                <i class="fas fa-school"></i>
+                                <h4>30 Ruang Kelas</h4>
+                                <p>Ruang kelas ber-AC dengan fasilitas LCD Proyektor</p>
+                            </div>
+                            <div class="fasilitas-item">
+                                <i class="fas fa-flask"></i>
+                                <h4>Laboratorium IPA</h4>
+                                <p>Lab IPA modern dengan peralatan lengkap</p>
+                            </div>
+                            <div class="fasilitas-item">
+                                <i class="fas fa-laptop"></i>
+                                <h4>Lab Komputer</h4>
+                                <p>50 unit komputer dengan akses internet</p>
+                            </div>
+                            <div class="fasilitas-item">
+                                <i class="fas fa-book"></i>
+                                <h4>Perpustakaan</h4>
+                                <p>Koleksi 5000+ buku dan ruang baca nyaman</p>
+                            </div>
+                            <div class="fasilitas-item">
+                                <i class="fas fa-mosque"></i>
+                                <h4>Masjid</h4>
+                                <p>Masjid dengan kapasitas 500 jamaah</p>
+                            </div>
+                            <div class="fasilitas-item">
+                                <i class="fas fa-futbol"></i>
+                                <h4>Lapangan Olahraga</h4>
+                                <p>Lapangan basket, voli, dan futsal</p>
+                            </div>
+                            <div class="fasilitas-item">
+                                <i class="fas fa-utensils"></i>
+                                <h4>Kantin</h4>
+                                <p>Kantin sehat dengan menu bergizi</p>
+                            </div>
+                            <div class="fasilitas-item">
+                                <i class="fas fa-bus"></i>
+                                <h4>Bus Sekolah</h4>
+                                <p>5 unit bus untuk antar jemput siswa</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Landing Page Pendaftaran -->
+    <section id="pendaftaran-page" class="hero" style="background-image: url(img/Landing-page-register.jpeg); opacity:0.8">
+        <h2>Bersama Raudhatul Ulum, kita membangun generasi islami yang cerdas, percaya diri, dan berakhlak mulia.
+            Lingkungan pesantren yang modern, kegiatan positif, serta pendidikan Al-Qur’an yang kuat menjadi keunggulan kami.</h2>
+        <p>Membentuk Generasi Islami yang Berakhlak Mulia dan Berprestasi</p>
+        <a href="register.html" class="btn-primary">Daftar Sekarang</a>
+    </section>
+
+    <section class="news" id="berita">
+        <div class="news-container">
+            <h2 class="section-title">Berita & Pengumuman</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">15 November 2025</div>
+                        <h3>Juara Umum Kompetisi Tahfidz Tingkat Kabupaten</h3>
+                        <p>Siswa-siswi Madrasah Raudhatul Ulum berhasil meraih juara umum dalam kompetisi tahfidz Al-Qur'an tingkat kabupaten...</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image"> 
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">10 November 2025</div>
+                        <h3>Pendaftaran Siswa Baru Tahun Ajaran 2026/2027</h3>
+                        <p>Dibuka pendaftaran siswa baru untuk tahun ajaran 2026/2027. Daftar sekarang dan dapatkan potongan biaya pendaftaran...</p>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image">
+                        <i class="fas fa-mosque"></i>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-date">5 November 2025</div>
+                        <h3>Peringatan Maulid Nabi Muhammad SAW 1446 H</h3>
+                        <p>Madrasah Raudhatul Ulum mengadakan peringatan Maulid Nabi Muhammad SAW dengan berbagai kegiatan islami...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="kontak">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Ponpes Raudhatul Ulum</h3>
+                <p>Lembaga pendidikan Islam yang berkomitmen membentuk generasi yang berakhlak mulia, berprestasi, dan berilmu pengetahuan.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Tautan Cepat</h3>
+                <a href="#profil">Profil Ponpes</a>
+                <a href="#akademik">Program Akademik</a>
+                <a href="#layanan">Layanan Digital</a>
+                <a href="#berita">Berita Terkini</a>
+            </div>
+            <div class="footer-section">
+                <h3>Kontak Kami</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Bengkok 1 RT 04 RW 10, Kelurahan Sukalaksana, Kecamatan Bungursari, Kota Tasikmalaya, Jawa Barat 46100</p>
+                <p><i class="fas fa-phone"></i> +62 823-1782-5152</p>
+                <p><i class="fas fa-envelope"></i> info@raudhatululum.sch.id</p>
+            </div>
+            <div class="footer-section">
+                <h3>Jam Operasional</h3>
+                <p>Senin - Jumat: 07.00 - 16.00 WIB</p>
+                <p>Sabtu: 07.00 - 12.00 WIB</p>
+                <p>Minggu: Libur</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Ponpes Raudhatul Ulum. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3 id="modalTitle">Form Layanan Informasi</h3>
+            <p id="modalDescription" class="modal-description"></p>
+            <form id="serviceForm">
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" id="nama" name="nama" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group" id="form-layanan-spesifik">
+                    <label for="keterangan">Keterangan Tambahan</label>
+                    <textarea id="keterangan" name="keterangan" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn-primary-form">Kirim Permintaan</button>
+            </form>
+            <div id="formSuccess" class="form-success" style="display: none;">
+                <p>Terima kasih! Permintaan Anda untuk layanan **<span id="successService"></span>** telah kami terima.</p>
+                <button type="button" class="btn-primary-form" onclick="document.getElementById('serviceModal').style.display='none'">Tutup</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        // Logika Profile tabs functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetTab = button.getAttribute('data-tab');
+                
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabPanels.forEach(panel => panel.classList.remove('active'));
+                
+                button.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+
+
+        // Logika Modal
+        const modal = document.getElementById('serviceModal');
+        const serviceCards = document.querySelectorAll('.service-card');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+        const closeModal = document.querySelector('.close-btn');
+        const serviceForm = document.getElementById('serviceForm');
+        const formSuccess = document.getElementById('formSuccess');
+        const successService = document.getElementById('successService');
+
+        serviceCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const serviceName = card.getAttribute('data-service');
+                const serviceDesc = card.querySelector('p').textContent;
+                
+                modalTitle.textContent = `Permintaan Informasi: ${serviceName}`;
+                modalDescription.textContent = `Silakan isi formulir di bawah untuk mendapatkan akses atau informasi lebih lanjut mengenai layanan **${serviceName}**: ${serviceDesc}`;
+                
+                serviceForm.style.display = 'block';
+                formSuccess.style.display = 'none';
+                serviceForm.reset();
+
+                let hiddenInput = document.getElementById('hiddenService');
+                if (!hiddenInput) {
+                    hiddenInput = document.createElement('input');
+                    hiddenInput.type = 'hidden';
+                    hiddenInput.id = 'hiddenService';
+                    hiddenInput.name = 'layanan_diminta';
+                    serviceForm.appendChild(hiddenInput);
+                }
+                hiddenInput.value = serviceName;
+                
+                modal.style.display = 'block';
+            });
+        });
+
+        closeModal.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Handle Form Submission (Simulasi)
+        serviceForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const serviceName = document.getElementById('hiddenService').value;
+            
+            serviceForm.style.display = 'none';
+            successService.textContent = serviceName;
+            formSuccess.style.display = 'block';
+            
+            console.log(`Simulasi: Data untuk layanan ${serviceName} telah dikirim!`);
+        });
+
+        // Bagian script.js lainnya tetap dipertahankan
+        // Smooth scrolling, observer, counter animation, sticky header, etc.
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    
+                    setTimeout(() => {
+                        entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, 100);
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.stat-item, .service-card, .news-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter animation for stats
+        function animateCounter(element, target, duration = 2000) {
+            let current = 0;
+            const increment = target / (duration / 16);
+            const isNumber = !isNaN(target);
+            
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    if (isNumber) {
+                        element.textContent = Math.floor(current) + '+';
+                    }
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    if (isNumber) {
+                        element.textContent = target + '+';
+                    } else {
+                        element.textContent = target;
+                    }
+                }
+            };
+            
+            if (isNumber) {
+                updateCounter();
+            }
+        }
+
+        // Trigger counter animation when stats section is visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const text = stat.textContent;
+                        const number = parseInt(text.replace('+', ''));
+                        if (!isNaN(number)) {
+                            stat.textContent = '0+';
+                            animateCounter(stat, number);
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // Add active class to navigation based on scroll position
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section[id]');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Sticky header background change on scroll
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+
+        // Profile cards hover effect enhancement
+        document.querySelectorAll('.struktur-card, .fasilitas-item').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        console.log('Madrasah Raudhatul Ulum - Sistem Informasi loaded successfully!');
+    </script>
+</body>
+</html>

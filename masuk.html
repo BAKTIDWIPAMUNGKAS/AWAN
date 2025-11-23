@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - Ponpes Raudhatul Ulum</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a5f3f, #2d8659);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            max-width: 1000px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+        }
+
+        .login-left {
+            background: linear-gradient(135deg, #1a5f3f, #2d8659);
+            color: white;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .login-left i {
+            font-size: 80px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .login-left h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .login-left p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .login-right {
+            padding: 40px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .form-header h3 {
+            color: #1a5f3f;
+            font-size: 26px;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            background: #f5f5f5;
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: #1a5f3f;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-content {
+            display: none;
+        }
+
+        .form-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-section-title {
+            color: #1a5f3f;
+            font-size: 16px;
+            margin: 20px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #1a5f3f;
+            font-weight: 600;
+        }
+
+        .form-section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .input-group input {
+            padding-left: 45px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #1a5f3f;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 95, 63, 0.1);
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .remember-forgot label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .remember-forgot a {
+            color: #1a5f3f;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .remember-forgot a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #1a5f3f, #2d8659);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(26, 95, 63, 0.3);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            color: #999;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+        .back-home {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .back-home a {
+            color: #1a5f3f;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-home a:hover {
+            text-decoration: underline;
+        }
+
+        .alert {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert i {
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                grid-template-columns: 1fr;
+            }
+
+            .login-left {
+                padding: 30px 20px;
+            }
+
+            .login-left i {
+                font-size: 60px;
+                margin-bottom: 20px;
+            }
+
+            .login-left h2 {
+                font-size: 24px;
+            }
+
+            .login-right {
+                padding: 30px 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-left">
+            <i class="fas fa-user-shield"></i>
+            <h2>Portal Admin</h2>
+            <p>Sistem Informasi Manajemen</p>
+            <p style="margin-top: 20px;">Ponpes Raudhatul Ulum</p>
+        </div>
+
+        <div class="login-right">
+            <div class="form-header">
+                <h3>Selamat Datang</h3>
+                <p>Silakan login atau daftar untuk melanjutkan</p>
+            </div>
+
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="switchTab('login')">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button class="tab-btn" onclick="switchTab('register')">
+                    <i class="fas fa-user-plus"></i> Daftar
+                </button>
+            </div>
+
+            <div id="alertBox" class="alert"></div>
+
+            <!-- Form Login -->
+            <div id="loginForm" class="form-content active">
+                <form onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Username atau Email</label>
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="loginUsername" placeholder="Masukkan username atau email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="input-group">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="loginPassword" placeholder="Masukkan password" required>
+                        </div>
+                    </div>
+
+                    <div class="remember-forgot">
+                        <label>
+                            <input type="checkbox"> Ingat saya
+                        </label>
+                        <a href="#" onclick="alert('Hubungi administrator untuk reset password'); return false;">Lupa password?</a>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-sign-in-alt"></i> Masuk
+                    </button>
+                </form>
+
+                <div class="divider">atau</div>
+
+                <!-- Di bagian atas form login, tambahkan tombol back -->
+                <div style="position: absolute; top: 20px; left: 20px; z-index: 10;">
+                    <a href="index.html" style="color: white; text-decoration: none; font-size: 14px;">
+                        <i class="fas fa-arrow-left"></i> Kembali ke Beranda
+                    </a>
+                </div>
+            </div>
+
+            <!-- Form Register -->
+            <div id="registerForm" class="form-content">
+                <form onsubmit="handleRegister(event)">
+                    <div class="form-section-title">Informasi Akun</div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Username <span class="required">*</span></label>
+                            <div class="input-group">
+                                <i class="fas fa-user-tag"></i>
+                                <input type="text" id="regUsername" placeholder="Pilih username" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email <span class="required">*</span></label>
+                            <div class="input-group">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="regEmail" placeholder="email@example.com" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Password <span class="required">*</span></label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="regPassword" placeholder="Min. 6 karakter" required minlength="6">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Konfirmasi Password <span class="required">*</span></label>
+                            <div class="input-group">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="regConfirmPassword" placeholder="Ulangi password" required minlength="6">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section-title">Data Pribadi</div>
+
+                    <div class="form-group full-width">
+                        <label>Nama Lengkap <span class="required">*</span></label>
+                        <div class="input-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="regName" placeholder="Nama lengkap dengan gelar" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>NIP <span class="required">*</span></label>
+                            <input type="text" id="regNip" placeholder="NIP 18 digit" required>
+                        </div>
+                        <div class="form-group">
+                            <label>No. HP <span class="required">*</span></label>
+                            <input type="tel" id="regHp" placeholder="08xxxxxxxxxx" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Tempat Lahir <span class="required">*</span></label>
+                            <input type="text" id="regTempatLahir" placeholder="Kota kelahiran" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tanggal Lahir <span class="required">*</span></label>
+                            <input type="date" id="regTanggalLahir" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Alamat Lengkap <span class="required">*</span></label>
+                        <textarea id="regAlamat" rows="2" placeholder="Alamat lengkap tempat tinggal" required></textarea>
+                    </div>
+
+                    <div class="form-section-title">Informasi Kepegawaian</div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Role/Jabatan <span class="required">*</span></label>
+                            <select id="regRole" required>
+                                <option value="">Pilih Role</option>
+                                <option value="admin">Administrator</option>
+                                <option value="guru">Guru</option>
+                                <option value="staff">Staff TU</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Pendidikan Terakhir <span class="required">*</span></label>
+                            <select id="regPendidikan" required>
+                                <option value="">Pilih Pendidikan</option>
+                                <option value="S3">S3 (Doktor)</option>
+                                <option value="S2">S2 (Magister)</option>
+                                <option value="S1">S1 (Sarjana)</option>
+                                <option value="D3">D3 (Diploma)</option>
+                                <option value="SMA/SMK">SMA/SMK</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Mata Pelajaran</label>
+                            <input type="text" id="regMapel" placeholder="Isi jika Guru">
+                        </div>
+                        <div class="form-group">
+                            <label>Wali Kelas</label>
+                            <input type="text" id="regWali" placeholder="Contoh: 7A">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-user-plus"></i> Daftar Sekarang
+                    </button>
+                </form>
+
+                <div class="divider">atau</div>
+
+                <div class="back-home">
+                    <a href="index.html">
+                        <i class="fas fa-home"></i> Kembali ke Beranda
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk mendapatkan semua user yang terdaftar
+        function getRegisteredUsers() {
+            const users = localStorage.getItem('registeredUsers');
+            return users ? JSON.parse(users) : {
+                'ahmad.fauzi': { 
+                    name: 'Ahmad Fauzi, S.Pd', 
+                    role: 'Guru Matematika', 
+                    wali: '7A',
+                    email: 'ahmad.fauzi@raudhatul.sch.id',
+                    password: 'password123',
+                    nip: '198501012010011001',
+                    ttl: 'Tasikmalaya, 1 Januari 1985',
+                    pendidikan: 'S1 Pendidikan Matematika',
+                    mataPelajaran: 'Matematika',
+                    hp: '081234567893',
+                    alamat: 'Jl. Merdeka No. 45, Tasikmalaya'
+                },
+                'admin': { 
+                    name: 'Admin Sekolah', 
+                    role: 'Administrator Utama', 
+                    wali: '-',
+                    email: 'admin@raudhatul.sch.id',
+                    password: 'admin123',
+                    nip: '199001012015011001',
+                    ttl: 'Tasikmalaya, 1 Januari 1990',
+                    pendidikan: 'S1 Administrasi',
+                    mataPelajaran: '-',
+                    hp: '081234567890',
+                    alamat: 'Jl. Sudirman No. 12, Tasikmalaya'
+                },
+                'maruf': { 
+                    name: 'Ma\'ruf Almaarip', 
+                    role: 'Guru Fiqh', 
+                    wali: '7B',
+                    email: 'maruf@raudhatul.sch.id',
+                    password: 'maruf123',
+                    nip: '198801012012011001',
+                    ttl: 'Tasikmalaya, 1 Januari 1988',
+                    pendidikan: 'S1 Pendidikan Agama Islam',
+                    mataPelajaran: 'Fiqh',
+                    hp: '081234567891',
+                    alamat: 'Jl. Ahmad Yani No. 23, Tasikmalaya'
+                }
+            };
+        }
+
+        // Fungsi untuk menyimpan user baru
+        function saveUser(username, userData) {
+            const users = getRegisteredUsers();
+            users[username] = userData;
+            localStorage.setItem('registeredUsers', JSON.stringify(users));
+        }
+
+        function switchTab(tab) {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const alertBox = document.getElementById('alertBox');
+            
+            alertBox.style.display = 'none';
+            
+            tabBtns.forEach(btn => btn.classList.remove('active'));
+            
+            if (tab === 'login') {
+                loginForm.classList.add('active');
+                registerForm.classList.remove('active');
+                tabBtns[0].classList.add('active');
+            } else {
+                registerForm.classList.add('active');
+                loginForm.classList.remove('active');
+                tabBtns[1].classList.add('active');
+            }
+        }
+    
+        function showAlert(message, type) {
+            const alertBox = document.getElementById('alertBox');
+            alertBox.className = `alert ${type}`;
+            alertBox.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>${message}`;
+            alertBox.style.display = 'block';
+            
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 5000);
+        }
+    
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            
+            const registeredUsers = getRegisteredUsers();
+            
+            let foundUser = null;
+            let foundUsername = null;
+            
+            for (const [uname, userData] of Object.entries(registeredUsers)) {
+                if (uname.toLowerCase() === username.toLowerCase() || 
+                    userData.email.toLowerCase() === username.toLowerCase()) {
+                    foundUser = userData;
+                    foundUsername = uname;
+                    break;
+                }
+            }
+            
+            if (foundUser && foundUser.password === password) {
+                const userSession = {
+                    username: foundUsername,
+                    name: foundUser.name,
+                    role: foundUser.role,
+                    wali: foundUser.wali,
+                    email: foundUser.email,
+                    nip: foundUser.nip || '-',
+                    ttl: foundUser.ttl || '-',
+                    pendidikan: foundUser.pendidikan || '-',
+                    mataPelajaran: foundUser.mataPelajaran || '-',
+                    hp: foundUser.hp || '-',
+                    alamat: foundUser.alamat || '-'
+                };
+                
+                sessionStorage.setItem('loggedInUser', JSON.stringify(userSession));
+                
+                showAlert('Login berhasil! Mengalihkan ke dashboard...', 'success');
+                
+                setTimeout(() => {
+                    window.location.href = 'portal-admin.html';
+                }, 2000);
+            } else if (foundUser) {
+                showAlert('Password salah! Silakan coba lagi.', 'error');
+            } else {
+                showAlert('Username atau email tidak ditemukan. Silakan daftar terlebih dahulu.', 'error');
+            }
+        }
+    
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('regUsername').value.trim().toLowerCase();
+            const email = document.getElementById('regEmail').value.trim().toLowerCase();
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('regConfirmPassword').value;
+            const name = document.getElementById('regName').value.trim();
+            const nip = document.getElementById('regNip').value.trim();
+            const hp = document.getElementById('regHp').value.trim();
+            const tempatLahir = document.getElementById('regTempatLahir').value.trim();
+            const tanggalLahir = document.getElementById('regTanggalLahir').value;
+            const alamat = document.getElementById('regAlamat').value.trim();
+            const role = document.getElementById('regRole').value;
+            const pendidikan = document.getElementById('regPendidikan').value;
+            const mapel = document.getElementById('regMapel').value.trim() || '-';
+            const wali = document.getElementById('regWali').value.trim() || '-';
+            
+            if (password !== confirmPassword) {
+                showAlert('Password dan konfirmasi password tidak cocok!', 'error');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showAlert('Password minimal 6 karakter!', 'error');
+                return;
+            }
+            
+            const registeredUsers = getRegisteredUsers();
+            
+            if (registeredUsers[username]) {
+                showAlert('Username sudah terdaftar! Gunakan username lain.', 'error');
+                return;
+            }
+            
+            for (const userData of Object.values(registeredUsers)) {
+                if (userData.email === email) {
+                    showAlert('Email sudah terdaftar! Gunakan email lain.', 'error');
+                    return;
+                }
+            }
+            
+            // Format tanggal lahir
+            const dateObj = new Date(tanggalLahir);
+            const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 
+                          'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            const formattedDate = `${tempatLahir}, ${dateObj.getDate()} ${months[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
+            
+            // Tentukan role lengkap
+            let roleText = '';
+            if (role === 'admin') {
+                roleText = 'Administrator';
+            } else if (role === 'guru') {
+                roleText = mapel ? `Guru ${mapel}` : 'Guru';
+            } else {
+                roleText = 'Staff TU';
+            }
+            
+            const newUser = {
+                name: name,
+                email: email,
+                role: roleText,
+                wali: wali,
+                password: password,
+                nip: nip,
+                ttl: formattedDate,
+                pendidikan: pendidikan,
+                mataPelajaran: mapel,
+                hp: hp,
+                alamat: alamat
+            };
+            
+            saveUser(username, newUser);
+            
+            showAlert('Pendaftaran berhasil! Silakan login dengan akun Anda.', 'success');
+            
+            setTimeout(() => {
+                switchTab('login');
+                document.getElementById('loginUsername').value = username;
+                // Reset form
+                document.getElementById('registerForm').querySelector('form').reset();
+            }, 2000);
+        }
+
+        // Inisialisasi data user default jika belum ada
+        if (!localStorage.getItem('registeredUsers')) {
+            localStorage.setItem('registeredUsers', JSON.stringify(getRegisteredUsers()));
+        }
+    </script>
+</body>
+</html>
